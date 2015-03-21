@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">RefarorSample</string>
-    <string name="referer_message">refererを受け取りました。¥nReferer: </string>
+    <string name="referer_message">refererを受け取りました。\nReferer: </string>
     <string name="standard_message">普通に起動しました</string>
-    <string name="deeplink_received_params">ディープリンクで起動しました。¥nパラメータ: </string>
+    <string name="deeplink_received_params">ディープリンクで起動しました\nパラメータ: </string>
 
 </resources>
