@@ -19,7 +19,10 @@ public class MainActivity extends Activity {
 	    String action = intent.getAction();
 	    if (Intent.ACTION_VIEW.equals(action)){
 	      Uri uri = intent.getData();
-		  message = getString(R.string.deeplink_received_params) + uri.toString();
+		  message = getString(R.string.deeplink_received_params);
+		  for(String name : uri.getQueryParameterNames()){
+			  message += name + ":" + uri.getQueryParameter(name) + "\n";
+		  }
 	    }
 		TextView text = (TextView) findViewById(R.id.RecievedParams);
 		text.setText(message);
