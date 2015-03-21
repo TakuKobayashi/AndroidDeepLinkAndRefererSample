@@ -2,8 +2,7 @@ package com.taku.kobayashi.refarorsample;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -11,5 +10,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		String message = getString(R.string.standard_message);
+		TextView text = (TextView) findViewById(R.id.RecievedParams);
+		text.setText(message);
 	}
 }
