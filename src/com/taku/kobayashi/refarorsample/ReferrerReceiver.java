@@ -1,15 +1,28 @@
 package com.taku.kobayashi.refarorsample;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 
 public class ReferrerReceiver extends BroadcastReceiver {
+	private final String TAG = "AndroidDeepLinkAndRefererSample";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+	    Log.d(TAG, "receieve");
+	    Log.d(TAG, intent.getPackage() + " " +intent.getAction() + " " + intent.getType());
+		Bundle bundle = intent.getExtras();
+	    for (String key : bundle.keySet()) {
+	      Log.d(TAG, key + ":" + bundle.get(key).toString());
+	    }
+
 		String referrer = intent.getStringExtra("referrer");
 		sendNotification(context, referrer);
 	}
