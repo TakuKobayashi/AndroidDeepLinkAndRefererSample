@@ -26,8 +26,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <!-- [scheme]://[host]/[path]のURLになる -->
-                <!-- この場合 referersample://thisissample/ になる -->
-                <data android:scheme="referersample" android:host="thisissample" />
+                <!-- この場合 referrersample://thisissample/ になる -->
+                <data android:scheme="referrersample" android:host="thisissample" />
             </intent-filter>
         </activity>
 
