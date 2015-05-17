@@ -14,19 +14,21 @@ import android.util.Log;
 public class ReferrerReceiver extends BroadcastReceiver {
 	private final String TAG = "AndroidDeepLinkAndRefererSample";
 
+	// Referrerを受け取るとここが呼ばれる
 	@Override
 	public void onReceive(Context context, Intent intent) {
-	    Log.d(TAG, "receieve");
-	    Log.d(TAG, intent.getPackage() + " " +intent.getAction() + " " + intent.getType());
+		//どんなものをおけとったかわかるようにKeyとValueの値の一覧をLogに吐き出す。
 		Bundle bundle = intent.getExtras();
-	    for (String key : bundle.keySet()) {
-	      Log.d(TAG, key + ":" + bundle.get(key).toString());
-	    }
+		for (String key : bundle.keySet()) {
+			Log.d(TAG, key + ":" + bundle.get(key).toString());
+		}
 
+		// Referrerを取得
 		String referrer = intent.getStringExtra("referrer");
 		sendNotification(context, referrer);
 	}
 
+	// 受け取ったReferrerをNotificationとして通知する処理
 	private void sendNotification(Context context, String message) {
 		Notification.Builder builder = new Notification.Builder(context.getApplicationContext());
 		builder.setTicker(context.getString(R.string.referer_ticker));
@@ -34,7 +36,7 @@ public class ReferrerReceiver extends BroadcastReceiver {
 		builder.setContentText(message);
 		builder.setSmallIcon(android.R.drawable.ic_dialog_info);
 		Notification notification = builder.build();
-		 
+
 		NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		manager.notify(0, notification);
 	}
