@@ -32,14 +32,14 @@ https://play.google.com/store/apps/details?id=com.taku.kobayashi.refarorsample
 <span style="color: #FF0000;"><b>※以下の検証は実機のAndroid端末にて検証を行ってください。</b></span>
 
 ### ディープリンク ###
-本アプリの場合、Androidのブラウザにて<a href="referersample://thisissample">こちら</a>にアクセスするとアプリがインストールされていれば、アプリが起動する。<br>
+本アプリの場合、Androidのブラウザにて<a href="referrersample://thisissample">こちら</a>にアクセスするとアプリがインストールされていれば、アプリが起動する。<br>
 リンクに使用したURLは以下の通り。
 
-<code><pre>referersample://thisissample</pre></code>
+<code><pre>referrersample://thisissample</pre></code>
 
 なお、アプリ内にパラメータを送る事もできる。送り方はURLのクエリと同様で以下のようなものになる。
 
-<code><pre>referersample://thisissample?test=hogehoge</pre></code>
+<code><pre>referrersample://thisissample?test=hogehoge</pre></code>
 
 この場合testというキーでhogehogeという値のパラメータがアプリに送られることとなる。
 
