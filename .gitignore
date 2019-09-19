@@ -20,3 +20,31 @@ local.properties
 .checkstyle
 .settings/
 proguard-project.txt
+
+# Android NDK Files
+
+#android studio
+proguard/
+*.iml
+*.ipr
+*.iws
+.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/libraries/
+.gradle/
+app/build/
+build/
+captures/
+
+.externalNativeBuild
+libwebp
+
+#NDK BUild
+*.so
+*.o
+*.o.d
+
+Thumbs.db
+*~
+*#
