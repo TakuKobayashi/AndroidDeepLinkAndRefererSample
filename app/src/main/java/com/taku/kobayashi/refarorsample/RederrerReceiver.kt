@@ -1,4 +1,4 @@
-package net.taptappun.taku.kobayashi.androiddeeplinkandreferersample
+package com.taku.kobayashi.refarorsample
 
 import android.app.Notification
 import android.content.BroadcastReceiver

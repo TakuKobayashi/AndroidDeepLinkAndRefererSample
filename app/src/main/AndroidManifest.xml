@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="net.taptappun.taku.kobayashi.androiddeeplinkandreferersample">
+          package="com.taku.kobayashi.refarorsample">
 
     <application
             android:allowBackup="true"
