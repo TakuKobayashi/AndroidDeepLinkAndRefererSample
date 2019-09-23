@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.allyants.notifyme.NotifyMe
 
 class ReferrerReceiver : BroadcastReceiver() {
     private val TAG = "DeeplinkAndReferrer"
@@ -21,21 +22,15 @@ class ReferrerReceiver : BroadcastReceiver() {
 
         // Referrerを取得
         val referrer = intent.getStringExtra("referrer")
-        //sendNotification(context, referrer)
+        sendNotification(context, referrer)
     }
 
-    /*
     // 受け取ったReferrerをNotificationとして通知する処理
     private fun sendNotification(context: Context, message: String?) {
-        val builder = Notification.Builder(context.applicationContext)
-        builder.setTicker(context.getString(R.string.referer_ticker))
-        builder.setContentTitle(context.getString(R.string.referer_title))
-        builder.setContentText(message)
-        builder.setSmallIcon(android.R.drawable.ic_dialog_info)
-        val notification = builder.build()
-
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.notify(0, notification)
+        val builder = NotifyMe.Builder(context);
+        builder.title(context.getString(R.string.referer_title))
+        builder.content(message)
+        builder.small_icon(android.R.drawable.ic_dialog_info)
+        builder.build();
     }
-    */
 }
