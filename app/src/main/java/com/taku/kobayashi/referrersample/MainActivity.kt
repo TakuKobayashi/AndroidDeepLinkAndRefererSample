@@ -1,4 +1,4 @@
-package com.taku.kobayashi.refarorsample
+package com.taku.kobayashi.referrersample
 
 import android.app.Activity
 import android.content.Intent

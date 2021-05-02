@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.taku.kobayashi.refarorsample">
+          package="com.taku.kobayashi.referrersample">
 
     <application
             android:allowBackup="true"
@@ -9,7 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true">
         <activity
-            android:name=".MainActivity" >
+            android:name="com.taku.kobayashi.referrersample.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,7 +28,7 @@
 
         <!-- 以下がReferrerを受け取るために必要な設定 -->
         <receiver
-            android:name=".ReferrerReceiver"
+            android:name="com.taku.kobayashi.referrersample.ReferrerReciever"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
