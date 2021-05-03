@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+
+def properties = loadLocalProperties();
 
 android {
     compileSdkVersion 30
@@ -15,12 +15,37 @@ android {
         versionName "1.2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if(!properties.getProperty("RELEASE_STORE_FILE", "").empty){
+                storeFile file(properties.getProperty("RELEASE_STORE_FILE", ""))
+            }
+            storePassword properties.getProperty("RELEASE_STORE_PASSWORD", "")
+            keyAlias properties.getProperty("RELEASE_KEY_ALIAS", "")
+            keyPassword properties.getProperty("RELEASE_KEY_PASSWORD", "")
         }
     }
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+private def loadLocalProperties() {
+    Properties properties = new Properties()
+    def localPropertiesFile = project.rootProject.file('local.properties');
+    if(!localPropertiesFile.exists()){
+        localPropertiesFile.createNewFile();
+    }
+    properties.load(localPropertiesFile.newDataInputStream())
+    return properties
 }
 
 dependencies {
