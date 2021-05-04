@@ -8,7 +8,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
     defaultConfig {
-        applicationId "com.taku.kobayashi.referrersample"
+        applicationId "com.taku.kobayashi.refarorsample"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 10300

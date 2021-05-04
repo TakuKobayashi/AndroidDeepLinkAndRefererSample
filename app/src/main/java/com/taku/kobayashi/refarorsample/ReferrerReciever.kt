@@ -1,4 +1,4 @@
-package com.taku.kobayashi.referrersample
+package com.taku.kobayashi.refarorsample
 
 import android.content.BroadcastReceiver
 import android.content.Context
