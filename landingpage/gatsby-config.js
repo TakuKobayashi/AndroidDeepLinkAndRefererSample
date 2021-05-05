@@ -1,6 +1,8 @@
 'use strict'
 
 module.exports = {
+  // Github PagesにDeployする時に必要
+  pathPrefix: '/AndroidDeepLinkAndRefererSample',
   siteMetadata: {
     title: 'gatsby-starter-typescript-plus',
     description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
