@@ -11,6 +11,7 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
+    "build:gh-pages": "gatsby build --prefix-paths",
     "clean": "rimraf public",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "dev": "gatsby develop",

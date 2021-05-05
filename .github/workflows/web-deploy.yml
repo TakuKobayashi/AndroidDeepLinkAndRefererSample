@@ -26,7 +26,7 @@ jobs:
     - name: gatsby build
       working-directory: ./landingpage
       run: |
-        yarn run build
+        yarn run build:gh-pages
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
