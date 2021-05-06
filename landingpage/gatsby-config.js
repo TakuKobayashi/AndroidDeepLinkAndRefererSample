@@ -4,14 +4,14 @@ module.exports = {
   // Github PagesにDeployする時に必要
   pathPrefix: '/AndroidDeepLinkAndRefererSample',
   siteMetadata: {
-    title: 'gatsby-starter-typescript-plus',
+    title: 'AndroidDeepLinkAndRefererSample',
     description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
-    keywords: 'gatsbyjs, gatsby, javascript, sample, something',
-    siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+    keywords: 'Android, gatsby, typescript, react, referer',
+    siteUrl: 'https://takukobayashi.github.io/AndroidDeepLinkAndRefererSample/',
     author: {
-      name: 'Resi Respati',
-      url: 'https://twitter.com/resir014',
-      email: 'resir014@gmail.com'
+      name: 'taptappun',
+      url: 'https://github.com/TakuKobayashi',
+      email: 'keep_slimbody@yahoo.co.jp'
     }
   },
   plugins: [
@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com'
+        siteUrl: 'https://takukobayashi.github.io/AndroidDeepLinkAndRefererSample/'
       }
     },
     'gatsby-plugin-emotion',
