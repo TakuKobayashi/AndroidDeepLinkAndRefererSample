@@ -14,6 +14,7 @@ interface UrlParams {
 
 const IndexPage = () => {
   const [deepLinkParams, setDeepLinkParams] = useState<UrlParams[]>([])
+  const [referrerValue, setReferrerValue] = useState<string>('')
 
   const deepLinkParamsKeyOnChange = (index: number, inputValue: string): void => {
     const urlParamsPair = deepLinkParams[index]
@@ -38,11 +39,15 @@ const IndexPage = () => {
     setDeepLinkParams([...deepLinkParams, { key: '', value: '' }])
   }
 
+  const referrerValueOnChange = (inputValue: string): void => {
+    setReferrerValue(inputValue)
+  }
+
   const deeplinkRootUrl = 'referrersample://thisissample'
 
   let deepLinkUrl = deeplinkRootUrl
   if (deepLinkParams.length > 0) {
-    const urlParamsPairStrings: String[] = []
+    const urlParamsPairStrings: string[] = []
     for (const params of deepLinkParams) {
       if (params.key && params.key.length > 0) {
         urlParamsPairStrings.push([params.key, params.value].join('='))
@@ -53,10 +58,35 @@ const IndexPage = () => {
     }
   }
 
+  let marketHTTPSInstallReferrerUrl = 'https://play.google.com/store/apps/details?id=com.taku.kobayashi.refarorsample'
+  let marketDeepLinkInstallReferrerUrl = 'market://details?id=com.taku.kobayashi.refarorsample'
+  if (referrerValue && referrerValue.length > 0) {
+    marketHTTPSInstallReferrerUrl = [marketHTTPSInstallReferrerUrl, 'referrer=' + referrerValue].join('&')
+    marketDeepLinkInstallReferrerUrl = [marketDeepLinkInstallReferrerUrl, 'referrer=' + referrerValue].join('&')
+  }
+
   return (
     <IndexLayout>
       <Page>
         <Container>
+          <div style={{ fontSize: '24px' }}>
+            <b style={{ color: '#FF0000' }}>Google Play Store HTTP URL:</b>
+            <a href={marketHTTPSInstallReferrerUrl}>{marketHTTPSInstallReferrerUrl}</a>
+          </div>
+          <div style={{ fontSize: '24px' }}>
+            <b style={{ color: '#FF0000' }}>Google Play Store App URL:</b>
+            <a href={marketDeepLinkInstallReferrerUrl}>{marketDeepLinkInstallReferrerUrl}</a>
+          </div>
+          <Divider />
+          <Input
+            placeholder="Referrer Value"
+            type="text"
+            label="Referrer Value"
+            className="rainbow-p-around_medium"
+            onChange={event => referrerValueOnChange(event.target.value)}
+            value={referrerValue}
+          />
+          <Divider />
           <div style={{ fontSize: '24px' }}>
             <b style={{ color: '#FF0000' }}>Deeplink URL:</b> <a href={deepLinkUrl}>{deepLinkUrl}</a>
           </div>
@@ -100,6 +130,7 @@ const IndexPage = () => {
             </Table>
           </TableContainer>
           <Button label="+" variant="border-filled" className="rainbow-m-around_medium" onClick={deepLinkAddParamsButtonOnClick} />
+          <Divider />
         </Container>
       </Page>
     </IndexLayout>
