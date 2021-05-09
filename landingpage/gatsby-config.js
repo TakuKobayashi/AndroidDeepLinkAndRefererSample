@@ -4,7 +4,7 @@ module.exports = {
   // Github PagesにDeployする時に必要
   pathPrefix: '/AndroidDeepLinkAndRefererSample',
   siteMetadata: {
-    title: 'AndroidDeepLinkAndRefererSample',
+    title: 'AndroidDeepLinkAndRefererSampleChecker',
     description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
     keywords: 'Android, gatsby, typescript, react, referer',
     siteUrl: 'https://takukobayashi.github.io/AndroidDeepLinkAndRefererSample/',

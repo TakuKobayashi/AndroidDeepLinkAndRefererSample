@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-typescript-plus",
-  "description": "A starter kit for TypeScript-based Gatsby projects with sensible defaults.",
+  "name": "android-deeplink-and-referrer-sample-checker",
+  "description": "Android ",
   "version": "1.0.0",
   "private": true,
-  "author": "Resi Respati <resir014@gmail.com>",
+  "author": "TakuKobayashi <keep_slimbody@yahoo.co.jp>",
   "keywords": [
     "gatsby"
   ],
