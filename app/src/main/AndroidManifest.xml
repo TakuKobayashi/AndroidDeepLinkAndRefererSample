@@ -25,15 +25,6 @@
                 <data android:scheme="referrersample" android:host="thisissample" />
             </intent-filter>
         </activity>
-
-        <!-- 以下がReferrerを受け取るために必要な設定 -->
-        <receiver
-            android:name="com.taku.kobayashi.refarorsample.ReferrerReciever"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
