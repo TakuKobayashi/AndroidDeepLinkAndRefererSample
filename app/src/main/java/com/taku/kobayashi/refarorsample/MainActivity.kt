@@ -52,31 +52,32 @@ class MainActivity : Activity() {
     }
 
     private fun showStoreReview(){
-        val reviewMessagesList = ArrayList<String>()
-        reviewMessagesList.add("ReviewRequest")
-        val manager = ReviewManagerFactory.create(this)
+        val manager = ReviewManagerFactory.create(this.applicationContext)
         val request = manager.requestReviewFlow()
         request.addOnCompleteListener { task ->
+            val reviewMessagesList = ArrayList<String>()
+            reviewMessagesList.add("ReviewRequest")
             reviewMessagesList.add("requestReviewFlow")
             reviewMessagesList.add(arrayOf("isComplete", task.isComplete.toString(), "isSuccessful", task.isSuccessful.toString()).joinToString(":"))
             if (task.isSuccessful) {
                 val reviewInfo = task.result
-                reviewMessagesList.add("requestReviewFlowResult:${reviewInfo.toString()}")
+                reviewMessagesList.add("requestReviewFlowResult:${reviewInfo}")
                 reviewMessagesList.add("describeContents:${reviewInfo.describeContents()}")
                 val flow = manager.launchReviewFlow(this, reviewInfo)
                 flow.addOnCompleteListener {
-                    reviewMessagesList.add("launchReviewFlow:${reviewInfo.toString()}")
-                    reviewMessagesList.add(arrayOf("isComplete", flow.isComplete.toString(), "isSuccessful", flow.isSuccessful.toString()).joinToString(":"))
-                    reviewMessagesList.add(arrayOf("flowResult", flow.result).joinToString(":"))
-                    showToast(reviewMessagesList.joinToString("\n"))
+                    val reviewLaunchedMessagesList = ArrayList<String>()
+                    reviewLaunchedMessagesList.add("launchReviewFlow:${flow}")
+                    reviewLaunchedMessagesList.add(arrayOf("isComplete", flow.isComplete.toString(), "isSuccessful", flow.isSuccessful.toString()).joinToString(":"))
+                    reviewLaunchedMessagesList.add(arrayOf("flowResult", flow.result).joinToString(":"))
+                    showAlertDialog("Review Complete", reviewLaunchedMessagesList.joinToString("\n"))
                 }
             } else {
                 val exception = task.exception
                 reviewMessagesList.add("message:" + exception?.message)
                 reviewMessagesList.add("localizedMessage:" + exception?.localizedMessage)
                 reviewMessagesList.add("stackTraceToString:" + exception?.stackTraceToString())
-                showToast(reviewMessagesList.joinToString("\n"))
             }
+            showToast(reviewMessagesList.joinToString("\n"))
         }
     }
 
@@ -135,7 +136,7 @@ class MainActivity : Activity() {
 
     private fun showInstallReferrer(referrerClient: InstallReferrerClient){
         val response: ReferrerDetails = referrerClient.installReferrer
-        val referrerUrl: String = response.installReferrer
+        val installReferrer: String = response.installReferrer
         val referrerClickTime: Long = response.referrerClickTimestampSeconds
         val appInstallTime: Long = response.installBeginTimestampSeconds
         val instantExperienceLaunched: Boolean = response.googlePlayInstantParam
@@ -145,14 +146,14 @@ class MainActivity : Activity() {
 
         val referrerMessagesList = ArrayList<String>()
         referrerMessagesList.add(renderTextViewMessage)
-        referrerMessagesList.add("referrerUrl:$referrerUrl")
+        referrerMessagesList.add("installReferrer:$installReferrer")
         referrerMessagesList.add("referrerClickTime:$referrerClickTime")
         referrerMessagesList.add("appInstallTime:$appInstallTime")
         referrerMessagesList.add("instantExperienceLaunched:$instantExperienceLaunched")
         referrerMessagesList.add("installBeginTimestampServerSeconds:$installBeginTimestampServerSeconds")
         referrerMessagesList.add("referrerClickTimestampServerSeconds:$referrerClickTimestampServerSeconds")
         referrerMessagesList.add("installVersion:$installVersion")
-        showToast(referrerMessagesList.joinToString("\n"))
+        showAlertDialog("Install Referrer Result", referrerMessagesList.joinToString("\n"))
         if(!isFinishing){
             runOnUiThread {
                 renderTextView(referrerMessagesList.joinToString("\n"))
