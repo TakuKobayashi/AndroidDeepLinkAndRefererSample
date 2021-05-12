@@ -38,6 +38,16 @@ android {
     }
 }
 
+if(!properties.getProperty("GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE_PATH", "").empty) {
+    apply plugin: 'com.github.triplet.play'
+
+    play {
+        serviceAccountCredentials.set(file(properties.getProperty("GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE_PATH", "")))
+        track.set("internal")
+        artifactDir.set(file("build/outputs/bundle/release/"))
+    }
+}
+
 private def loadLocalProperties() {
     Properties properties = new Properties()
     def localPropertiesFile = project.rootProject.file('local.properties');
