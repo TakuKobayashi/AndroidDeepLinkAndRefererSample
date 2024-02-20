@@ -14,13 +14,13 @@ jobs:
       matrix:
         compile-sdk: [30]
         build-tools: [30.0.0]
-        sdk-tools:   [4333796]
+        commandlinetools-download-url: [https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip]
 
     steps:
     - uses: actions/checkout@v4
     - name: setup ubuntu
       run: |
-         sudo apt-get --quiet update --yes
+        sudo apt-get --quiet update --yes
         sudo apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
     - name: setup JDK
       uses: actions/setup-java@v4
@@ -29,7 +29,7 @@ jobs:
         java-version: '17'
     - name: download Android SDK
       run: |
-        wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${{ matrix.sdk-tools }}.zip
+        wget --quiet --output-document=android-sdk.zip ${{ matrix.commandlinetools-download-url }}
         unzip -d android-sdk-linux android-sdk.zip
         sudo mkdir -p /root/.android
         sudo touch /root/.android/repositories.cfg

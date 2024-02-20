@@ -14,7 +14,7 @@ jobs:
       matrix:
         compile-sdk: [34]
         build-tools: [34.0.0]
-        sdk-tools:   [11076708]
+        commandlinetools-download-url: [https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip]
 
     steps:
     - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
         java-version: '17'
     - name: download Android SDK
       run: |
-        wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-${{ matrix.sdk-tools }}.zip
+        wget --quiet --output-document=android-sdk.zip ${{ matrix.commandlinetools-download-url }}
         unzip -d android-sdk-linux android-sdk.zip
         sudo mkdir -p /root/.android
         sudo touch /root/.android/repositories.cfg
