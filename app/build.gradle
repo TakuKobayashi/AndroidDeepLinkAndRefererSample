@@ -4,15 +4,24 @@ apply plugin: 'kotlin-parcelize'
 
 def properties = loadLocalProperties();
 
+def applicationVersionName = "1.4.3"
+def versionNameList = applicationVersionName.split(/\./)
+def powCounter = versionNameList.size()
+def versionNumbers = versionNameList.collect{numberString -> numberString.toInteger()}
+def applicationVersionCode = versionNumbers.sum{ number ->
+    powCounter = powCounter - 1
+    (Math.pow(100, powCounter) * number).toInteger()
+}
+
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    namespace 'com.taku.kobayashi.refarorsample'
+    compileSdk 34
     defaultConfig {
         applicationId "com.taku.kobayashi.refarorsample"
         minSdkVersion 14
-        targetSdkVersion 30
-        versionCode 10402
-        versionName "1.4.2"
+        targetSdkVersion 34
+        versionCode applicationVersionCode
+        versionName applicationVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -35,6 +44,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 
@@ -59,14 +75,14 @@ private def loadLocalProperties() {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.android.play:core:1.10.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.20"
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.play:core:1.10.3'
     implementation 'com.android.installreferrer:installreferrer:2.2'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
