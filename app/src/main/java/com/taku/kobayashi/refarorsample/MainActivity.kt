@@ -66,10 +66,11 @@ class MainActivity : Activity() {
                 val flow = manager.launchReviewFlow(this, reviewInfo)
                 flow.addOnCompleteListener {
                     val reviewLaunchedMessagesList = ArrayList<String>()
+                    reviewLaunchedMessagesList.add("Review Complete!!")
                     reviewLaunchedMessagesList.add("launchReviewFlow:${flow}")
                     reviewLaunchedMessagesList.add(arrayOf("isComplete", flow.isComplete.toString(), "isSuccessful", flow.isSuccessful.toString()).joinToString(":"))
                     reviewLaunchedMessagesList.add(arrayOf("flowResult", flow.result).joinToString(":"))
-                    showAlertDialog("Review Complete", reviewLaunchedMessagesList.joinToString("\n"))
+                    showToast(reviewLaunchedMessagesList.joinToString("\n"))
                 }
             } else {
                 val exception = task.exception
@@ -79,14 +80,6 @@ class MainActivity : Activity() {
             }
             showToast(reviewMessagesList.joinToString("\n"))
         }
-    }
-
-    private fun showAlertDialog(title: String, message: String = "", onClick: DialogInterface.OnClickListener? = null){
-        AlertDialog.Builder(this) // FragmentではActivityを取得して生成
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", onClick)
-                .show()
     }
 
     private fun showToast(message: String = ""){
@@ -153,7 +146,6 @@ class MainActivity : Activity() {
         referrerMessagesList.add("installBeginTimestampServerSeconds:$installBeginTimestampServerSeconds")
         referrerMessagesList.add("referrerClickTimestampServerSeconds:$referrerClickTimestampServerSeconds")
         referrerMessagesList.add("installVersion:$installVersion")
-        showAlertDialog("Install Referrer Result", referrerMessagesList.joinToString("\n"))
         if(!isFinishing){
             runOnUiThread {
                 renderTextView(referrerMessagesList.joinToString("\n"))
