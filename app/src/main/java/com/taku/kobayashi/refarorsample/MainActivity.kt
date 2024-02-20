@@ -46,7 +46,7 @@ class MainActivity : Activity() {
     }
 
     private fun renderTextView(message: String): String {
-        val textView = findViewById<TextView>(R.id.RecievedParams)
+        val textView = findViewById<TextView>(R.id.recievedParams)
         textView.text = message
         return textView.text.toString()
     }
@@ -136,13 +136,13 @@ class MainActivity : Activity() {
 
     private fun showInstallReferrer(referrerClient: InstallReferrerClient){
         val response: ReferrerDetails = referrerClient.installReferrer
-        val installReferrer: String = response.installReferrer
-        val referrerClickTime: Long = response.referrerClickTimestampSeconds
-        val appInstallTime: Long = response.installBeginTimestampSeconds
-        val instantExperienceLaunched: Boolean = response.googlePlayInstantParam
-        val installBeginTimestampServerSeconds: Long = response.installBeginTimestampServerSeconds
-        val referrerClickTimestampServerSeconds: Long = response.referrerClickTimestampServerSeconds
-        val installVersion: String = response.installVersion
+        val installReferrer = response.installReferrer
+        val referrerClickTime = response.referrerClickTimestampSeconds
+        val appInstallTime = response.installBeginTimestampSeconds
+        val instantExperienceLaunched = response.googlePlayInstantParam
+        val installBeginTimestampServerSeconds = response.installBeginTimestampServerSeconds
+        val referrerClickTimestampServerSeconds = response.referrerClickTimestampServerSeconds
+        val installVersion = response.installVersion
 
         val referrerMessagesList = ArrayList<String>()
         referrerMessagesList.add(renderTextViewMessage)
