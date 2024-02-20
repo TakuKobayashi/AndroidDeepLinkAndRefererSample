@@ -1,4 +1,4 @@
-package net.taptappun.taku.kobayashi.androiddeeplinkandreferersample
+package net.taptappun.taku.kobayashi.androiddeeplinkandreferrersample
 
 import org.junit.Test
 

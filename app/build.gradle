@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.github.triplet.play'
 
 def properties = loadLocalProperties();
 
@@ -14,15 +15,16 @@ def applicationVersionCode = versionNumbers.sum{ number ->
 }
 
 android {
-    namespace 'com.taku.kobayashi.refarorsample'
+    namespace 'com.taku.kobayashi.referrersample'
     compileSdk 34
     defaultConfig {
-        applicationId "com.taku.kobayashi.refarorsample"
+        applicationId "com.taku.kobayashi.referrersample"
         minSdkVersion 14
         targetSdkVersion 34
         versionCode applicationVersionCode
         versionName applicationVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     signingConfigs {
         release {
@@ -85,4 +87,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+play {
+    serviceAccountCredentials.set(file("service-account-key.json"))
 }
