@@ -48,3 +48,5 @@ libwebp
 Thumbs.db
 *~
 *#
+
+service-account-key.json
