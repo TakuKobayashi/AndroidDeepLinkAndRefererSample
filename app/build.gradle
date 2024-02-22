@@ -15,10 +15,10 @@ def applicationVersionCode = versionNumbers.sum{ number ->
 }
 
 android {
-    namespace 'com.taku.kobayashi.referrersample'
+    namespace 'com.taku.kobayashi.refarorsample'
     compileSdk 34
     defaultConfig {
-        applicationId "com.taku.kobayashi.referrersample"
+        applicationId "com.taku.kobayashi.refarorsample"
         minSdkVersion 14
         targetSdkVersion 34
         versionCode applicationVersionCode

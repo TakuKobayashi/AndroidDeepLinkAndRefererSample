@@ -9,6 +9,7 @@ import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
 import com.android.installreferrer.api.ReferrerDetails
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.taku.kobayashi.refarorsample.R
 
 class MainActivity : Activity() {
     private var renderTextViewMessage: String = ""
