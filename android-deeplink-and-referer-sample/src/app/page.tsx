@@ -164,7 +164,7 @@ export default function Home() {
               <TableBody>
                 {deepLinkParams.map((urlPrams, index) => {
                   return (
-                    <TableRow>
+                    <TableRow key={index}>
                       <TableCell>
                         <Input
                           placeholder='Key'
@@ -182,7 +182,9 @@ export default function Home() {
                         />
                       </TableCell>
                       <TableCell>
-                        <Button onClick={() => deepLinkDeleteParamsButtonOnClick(index)} />
+                        <Button variant='outlined' onClick={() => deepLinkDeleteParamsButtonOnClick(index)}>
+                          -
+                        </Button>
                       </TableCell>
                     </TableRow>
                   );
@@ -190,7 +192,9 @@ export default function Home() {
               </TableBody>
             </Table>
           </TableContainer>
-          <Button onClick={deepLinkAddParamsButtonOnClick} />
+          <Button variant='contained' onClick={deepLinkAddParamsButtonOnClick}>
+            +
+          </Button>
         </CardContent>
       </Card>
     </main>
