@@ -5,7 +5,7 @@ apply plugin: 'com.github.triplet.play'
 
 def properties = loadLocalProperties();
 
-def applicationVersionName = "1.4.3"
+def applicationVersionName = "1.4.4"
 def versionNameList = applicationVersionName.split(/\./)
 def powCounter = versionNameList.size()
 def versionNumbers = versionNameList.collect{numberString -> numberString.toInteger()}
