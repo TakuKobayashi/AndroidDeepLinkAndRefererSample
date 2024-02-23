@@ -52,8 +52,6 @@ jobs:
         echo "RELEASE_STORE_PASSWORD=${ANDROID_RELEASE_KEY_PASSWORD}" >> ./local.properties
         echo "RELEASE_KEY_ALIAS=referrersample" >> ./local.properties
         echo "RELEASE_KEY_PASSWORD=${ANDROID_RELEASE_KEY_PASSWORD}" >> ./local.properties
-    - name: config
-      run: cat ./local.properties
     - name: Android Release Apk Build
       run: ./gradlew assembleRelease
     - name: Android Release aab Build
