@@ -29,6 +29,7 @@ def applicationVersionCode = versionNumbers.sum{ number ->
 android {
     namespace 'com.taku.kobayashi.refarorsample'
     compileSdk = 36
+    buildToolsVersion = "36.1.0"
     defaultConfig {
         applicationId "com.taku.kobayashi.refarorsample"
         minSdkVersion 21
