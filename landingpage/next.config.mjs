@@ -5,6 +5,7 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     domains: ['play.google.com'],
+    unoptimized: true,
   },
 };
 
