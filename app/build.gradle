@@ -17,7 +17,7 @@ private def loadLocalProperties() {
 
 def properties = loadLocalProperties();
 
-def applicationVersionName = "1.4.4"
+def applicationVersionName = "1.5.0"
 def versionNameList = applicationVersionName.split(/\./)
 def powCounter = versionNameList.size()
 def versionNumbers = versionNameList.collect{numberString -> numberString.toInteger()}
