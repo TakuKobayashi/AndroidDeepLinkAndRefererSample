@@ -1,0 +1,46 @@
+name: "Setup Android SDK Composite Action"
+
+description: "A reusable composite action for setup JDK and Android SDK"
+
+inputs:
+  compile-sdk:
+    default: '36'
+    required: true
+  build-tools:
+    default: '36.1.0'
+    required: true
+  commandlinetools-download-url:
+    default: 'https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: setup JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'microsoft'
+        java-version: '17'
+    - name: download Android SDK
+      working-directory: ${{ github.workspace }}
+      shell: bash
+      run: |
+        wget --quiet --output-document=android-sdk.zip ${{ inputs.commandlinetools-download-url }}
+        unzip -d android-sdk-linux android-sdk.zip
+        sudo rm android-sdk.zip
+        sudo mkdir -p /root/.android
+        sudo touch /root/.android/repositories.cfg
+        echo y | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ "platforms;android-${{ inputs.compile-sdk }}" >/dev/null
+        echo y | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ "platform-tools" >/dev/null
+        echo y | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ "build-tools;${{ inputs.build-tools }}" >/dev/null
+        export ANDROID_SDK_ROOT=$PWD
+        export PATH=$PATH:$PWD/platform-tools/
+        chmod +x ./gradlew
+        set +o pipefail
+        yes | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ --licenses || true
+        set -o pipefail
+    - name: Set SDK Location
+      working-directory: ${{ github.workspace }}
+      shell: bash
+      run: |
+        echo "sdk.dir=`pwd`/android-sdk-linux" >> ./local.properties
