@@ -77,10 +77,10 @@ if(!properties.getProperty("GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE_PATH", 
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.17.0'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'com.google.android.material:material:1.13.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.core:core-ktx:1.19.0'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
     implementation 'com.android.installreferrer:installreferrer:2.2'
     implementation 'com.google.android.play:asset-delivery:2.3.0'
     implementation 'com.google.android.play:review:2.0.2'
