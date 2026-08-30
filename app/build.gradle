@@ -1,9 +1,10 @@
 import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-parcelize'
-apply plugin: 'com.github.triplet.play'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.plugin.parcelize'
+    id 'com.github.triplet.play' version '4.1.1'
+}
 
 private def loadLocalProperties() {
     Properties properties = new Properties()
@@ -28,12 +29,12 @@ def applicationVersionCode = versionNumbers.sum{ number ->
 
 android {
     namespace 'com.taku.kobayashi.refarorsample'
-    compileSdk = 36
-    buildToolsVersion = "36.1.0"
+    compileSdk 37
+    buildToolsVersion = "37.0.0"
     defaultConfig {
         applicationId "com.taku.kobayashi.refarorsample"
         minSdkVersion 21
-        targetSdkVersion 36
+        targetSdkVersion 37
         versionCode applicationVersionCode
         versionName applicationVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -50,9 +51,6 @@ android {
         }
     }
     buildTypes {
-        debug {
-            testCoverageEnabled true
-        }
         release {
             shrinkResources true
             minifyEnabled true
@@ -64,14 +62,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = '17'
-    }
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 if(!properties.getProperty("GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE_PATH", "").empty) {
-    apply plugin: 'com.github.triplet.play'
-
     play {
         serviceAccountCredentials.set(file(properties.getProperty("GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE_PATH", "")))
         track.set("internal")
@@ -80,7 +77,6 @@ if(!properties.getProperty("GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS_FILE_PATH", 
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.20"
     implementation 'androidx.core:core-ktx:1.17.0'
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.13.0'
@@ -99,10 +95,7 @@ play {
         serviceAccountCredentials = file(properties.getProperty("GOOGLE_PLAY_PUBLISH_API_CONFIG_FILE", ""))
     }
     artifactDir = file("build/outputs/bundle/release/")
-    // Google Playにreleaseする段階名 internal/alpha/beta/production のどれか(defaultは internal)
     track = "beta"
-    // リリースのStatusに含まれているReleaseStatusの COMPLETED/DRAFT/HALTED/IN_PROGRESS のどれか(defaultは COMPLETED)
-    // IN_PROGRESSだと部分公開という意味
     releaseStatus = ReleaseStatus.DRAFT
     releaseName = "${androidDefaultConfig.versionCode} (${androidDefaultConfig.versionName})"
 }

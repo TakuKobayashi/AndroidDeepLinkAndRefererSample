@@ -4,13 +4,13 @@ description: "A reusable composite action for setup JDK and Android SDK"
 
 inputs:
   compile-sdk:
-    default: '36'
+    default: '37'
     required: true
   build-tools:
-    default: '36.1.0'
+    default: '37.0.0'
     required: true
   commandlinetools-download-url:
-    default: 'https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip'
+    default: 'https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip'
     required: true
 
 runs:
