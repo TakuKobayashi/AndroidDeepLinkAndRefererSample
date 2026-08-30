@@ -30,14 +30,15 @@ runs:
         sudo rm android-sdk.zip
         sudo mkdir -p /root/.android
         sudo touch /root/.android/repositories.cfg
-        echo y | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ "platforms;android-${{ inputs.compile-sdk }}" >/dev/null
-        echo y | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ "platform-tools" >/dev/null
-        echo y | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ "build-tools;${{ inputs.build-tools }}" >/dev/null
-        export ANDROID_SDK_ROOT=$PWD
-        export PATH=$PATH:$PWD/platform-tools/
+        SDK_ROOT="$PWD/android-sdk-linux"
+        echo y | "$SDK_ROOT/cmdline-tools/bin/sdkmanager" --sdk_root="$SDK_ROOT" "platforms;android-${{ inputs.compile-sdk }}" >/dev/null
+        echo y | "$SDK_ROOT/cmdline-tools/bin/sdkmanager" --sdk_root="$SDK_ROOT" "platform-tools" >/dev/null
+        echo y | "$SDK_ROOT/cmdline-tools/bin/sdkmanager" --sdk_root="$SDK_ROOT" "build-tools;${{ inputs.build-tools }}" >/dev/null
+        echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> "$GITHUB_ENV"
+        echo "$SDK_ROOT/platform-tools" >> "$GITHUB_PATH"
         chmod +x ./gradlew
         set +o pipefail
-        yes | android-sdk-linux/cmdline-tools/bin/sdkmanager --sdk_root=./android-sdk-linux/licenses/ --licenses || true
+        yes | "$SDK_ROOT/cmdline-tools/bin/sdkmanager" --sdk_root="$SDK_ROOT" --licenses || true
         set -o pipefail
     - name: Set SDK Location
       working-directory: ${{ github.workspace }}
